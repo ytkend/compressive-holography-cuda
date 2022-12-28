@@ -146,4 +146,4 @@ void denoise_tv(const complex64* in, complex64* out, int nx, int ny, float weigh
     }
 }
 
-}
+} // namespace gpu

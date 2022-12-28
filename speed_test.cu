@@ -50,7 +50,7 @@ double speed_test_cu(std::string reg_type, int nx, int ny, int nz, int nit)
     auto d_holo2 = gpu::remove_dc(d_holo);
 
     // forward model without padding
-    gpu::CSHoloModel model(nx, ny, dx, dy, wl, zs, 0, 0);
+    gpu::CompressiveHolographyModel model(nx, ny, dx, dy, wl, zs, 0, 0);
 
     // fista
     auto stepsize = 0.5 / nz;

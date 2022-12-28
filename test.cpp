@@ -62,9 +62,9 @@ int main(int argc, char* argv[])
         zs[i] = (i - 1) * dz + z_offset;
     }
 
-    // check reconstruction by adjoint
+    // check reconstruction by the adjoint operator
     {
-        CSHoloModel model(nx, ny, dx, dy, wl, zs, nx, ny);
+        CompressiveHolographyModel model(nx, ny, dx, dy, wl, zs, nx, ny);
         std::vector<complex64> recon(nx * ny * nz);
         model.adjoint(holo, recon);
 
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
     auto holo2 = remove_dc(holo);
 
     // forward model
-    CSHoloModel model(nx, ny, dx, dy, wl, zs, nx, ny);
+    CompressiveHolographyModel model(nx, ny, dx, dy, wl, zs, nx, ny);
 
     // fista
     auto stepsize = 0.5 / nz;

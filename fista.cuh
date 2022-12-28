@@ -86,4 +86,4 @@ void fista(const device_vector<T>& y, device_vector<T>& x, ForwardModel<T>& mode
     }
 }
 
-}
+} // namespace gpu

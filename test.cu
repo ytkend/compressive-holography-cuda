@@ -21,8 +21,8 @@ int main(int argc, char* argv[])
     } else {
         reg_type = std::string(argv[1]);
         assert(reg_type == "l1" || reg_type == "tv");
-        nit = std::stoi(argv[2]);       // 800 or 400
-        weight = std::stof(argv[3]);    // 0.001 or 0.004
+        nit = std::stoi(argv[2]);
+        weight = std::stof(argv[3]);
         std::cout << reg_type << ", iterations = " << nit << ", weight = " << weight << std::endl;
     }
 
@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
         zs[i] = (i - 1) * dz + z_offset;
     }
 
-    // check reconstruction by adjoint
+    // check reconstruction by the adjoint operator
     {
         // send hologram from host to device
         gpu::device_vector<gpu::complex64> d_holo(holo.size());
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
         // adjoint reconstruction
         gpu::device_vector<gpu::complex64> d_recon(holo.size() * nz);
-        gpu::CSHoloModel model(nx, ny, dx, dy, wl, zs, nx, ny);
+        gpu::CompressiveHolographyModel model(nx, ny, dx, dy, wl, zs, nx, ny);
         model.adjoint(d_holo, d_recon);
 
         // send reconstructed images from device to host
@@ -94,7 +94,7 @@ int main(int argc, char* argv[])
     auto d_holo2 = gpu::remove_dc(d_holo);
 
     // forward model
-    gpu::CSHoloModel model(nx, ny, dx, dy, wl, zs, nx, ny);
+    gpu::CompressiveHolographyModel model(nx, ny, dx, dy, wl, zs, nx, ny);
 
     // fista
     auto stepsize = 0.5 / nz;

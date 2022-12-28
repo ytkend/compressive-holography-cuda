@@ -11,7 +11,7 @@
 #include "fft.h"
 #include "total_variation.h"
 
-struct CSHoloModel : ForwardModel<complex64>
+struct CompressiveHolographyModel : ForwardModel<complex64>
 {
     int nx, ny, nz;
     int nx2, ny2;
@@ -20,7 +20,7 @@ struct CSHoloModel : ForwardModel<complex64>
     std::vector<complex64> tf;
     std::vector<complex64> buffer;
 
-    CSHoloModel(int nx, int ny, float dx, float dy, float wl, std::vector<float> zs, int pad_x = 0, int pad_y = 0);
+    CompressiveHolographyModel(int nx, int ny, float dx, float dy, float wl, std::vector<float> zs, int pad_x = 0, int pad_y = 0);
     void forward(const std::vector<complex64>& in, std::vector<complex64>& out);
     void adjoint(const std::vector<complex64>& in, std::vector<complex64>& out);
 };

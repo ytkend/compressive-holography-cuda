@@ -50,7 +50,7 @@ double speed_test(std::string reg_type, int nx, int ny, int nz, int nit)
     auto holo2 = remove_dc(holo);
 
     // forward model without padding
-    CSHoloModel model(nx, ny, dx, dy, wl, zs, 0, 0);
+    CompressiveHolographyModel model(nx, ny, dx, dy, wl, zs, 0, 0);
 
     // fista
     auto stepsize = 0.5 / nz;

@@ -38,7 +38,7 @@ void fresnel_tf(complex64* tf, int nx, int ny, float dx, float dy, float wl, flo
     fftshift(tf, tf, ny, nx);
 }
 
-CSHoloModel::CSHoloModel(int nx, int ny, float dx, float dy, float wl, std::vector<float> zs, int pad_x, int pad_y)
+CompressiveHolographyModel::CompressiveHolographyModel(int nx, int ny, float dx, float dy, float wl, std::vector<float> zs, int pad_x, int pad_y)
     : nx(nx), ny(ny), nz(zs.size()), nx2(nx + pad_x), ny2(ny + pad_y),
       fft(ny2, nx2), fft_batch(ny2, nx2, nz), tf(nx2 * ny2 * nz), buffer(nx2 * ny2 * nz)
 {
@@ -47,7 +47,7 @@ CSHoloModel::CSHoloModel(int nx, int ny, float dx, float dy, float wl, std::vect
     }
 }
 
-void CSHoloModel::forward(const std::vector<complex64>& in, std::vector<complex64>& out)
+void CompressiveHolographyModel::forward(const std::vector<complex64>& in, std::vector<complex64>& out)
 {
     assert(in.size() >= nx * ny * nz);
     assert(out.size() >= nx * ny);
@@ -83,7 +83,7 @@ void CSHoloModel::forward(const std::vector<complex64>& in, std::vector<complex6
                    [](complex64 z){ return complex64(z.real(), 0); });
 }
 
-void CSHoloModel::adjoint(const std::vector<complex64>& in, std::vector<complex64>& out)
+void CompressiveHolographyModel::adjoint(const std::vector<complex64>& in, std::vector<complex64>& out)
 {
     assert(in.size() >= nx * ny);
     assert(out.size() >= nx * ny * nz);

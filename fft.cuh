@@ -163,4 +163,4 @@ void crop(const T* in, T* out, int nx, int ny, int begin_x, int begin_y, int end
     g_crop<<<grid, block>>>(in, out, {nx, ny}, {begin_x, begin_y}, {end_x, end_y});
 }
 
-}
+} // namespace gpu

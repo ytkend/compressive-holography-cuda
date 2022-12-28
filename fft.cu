@@ -89,4 +89,4 @@ void FFTMany::inverse(const thrust::complex<float>* in, thrust::complex<float>* 
     inverse(reinterpret_cast<const cufftComplex*>(in), reinterpret_cast<cufftComplex*>(out));
 }
 
-}
+} // namespace gpu

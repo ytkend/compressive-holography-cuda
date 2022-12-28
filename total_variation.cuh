@@ -13,4 +13,4 @@ float total_variation(const complex64* u, int nx, int ny);
 void denoise_tv(const float* in, float* out, int nx, int ny, float weight, int nit);
 void denoise_tv(const complex64* in, complex64* out, int nx, int ny, float weight, int nit);
 
-}
+} // namespace gpu

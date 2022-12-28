@@ -12,7 +12,7 @@
 
 namespace gpu {
 
-struct CSHoloModel : ForwardModel<complex64>
+struct CompressiveHolographyModel : ForwardModel<complex64>
 {
     int nx, ny, nz;
     int nx2, ny2;
@@ -22,7 +22,7 @@ struct CSHoloModel : ForwardModel<complex64>
     device_vector<complex64> buffer;
     dim3 block, grid;
 
-    CSHoloModel(int nx, int ny, float dx, float dy, float wl, std::vector<float> zs, int pad_x = 0, int pad_y = 0);
+    CompressiveHolographyModel(int nx, int ny, float dx, float dy, float wl, std::vector<float> zs, int pad_x = 0, int pad_y = 0);
     void forward(const device_vector<complex64>& in, device_vector<complex64>& out) override;
     void adjoint(const device_vector<complex64>& in, device_vector<complex64>& out) override;
 };
