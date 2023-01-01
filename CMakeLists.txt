@@ -44,11 +44,17 @@ target_sources(
 
 find_package(OpenMP)
 target_link_libraries(${BUILD_TARGET} OpenMP::OpenMP_CXX)
+
+# FFTW3 settings using find_package
 find_package(FFTW3 REQUIRED)
-target_include_directories(${BUILD_TARGET} PUBLIC ${FFTW3_INCLUDE_DIRS})
-target_link_directories(${BUILD_TARGET} PUBLIC ${FFTW3_LIBRARY_DIRS})
-target_link_libraries(${BUILD_TARGET} fftw3f)
-target_link_libraries(${BUILD_TARGET} fftw3f_omp)
+
+# # if find_package causes errors, try pkg-config
+# find_package(PkgConfig)
+# pkg_check_modules(FFTW3 REQUIRED "fftw3f")
+
+target_include_directories(${BUILD_TARGET} PRIVATE ${FFTW3_INCLUDE_DIRS})
+target_link_directories(${BUILD_TARGET} PRIVATE ${FFTW3_LIBRARY_DIRS})
+target_link_libraries(${BUILD_TARGET} "fftw3f" "fftw3f_omp")
 
 if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/benchmarks")
     add_subdirectory(benchmarks)
