@@ -33,10 +33,6 @@ Sample hologram reconstruction using L1 or TV regularization on CPU:
 ./test tv [number of iterations] [regularizer weight]
 ```
 
-## Author
-
-- Yutaka Endo, Kanazawa University, endo@se.kanazawa-u.ac.jp
-
 ## Reference
 
 - Yutaka Endo, Tomoyoshi Shimobaba, Takashi Kakue, and Tomoyoshi Ito, "GPU-accelerated compressive holography," Opt. Express 24, 8437-8445 (2016) [link](https://doi.org/10.1364/OE.24.008437)
